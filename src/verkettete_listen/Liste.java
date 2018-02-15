@@ -48,6 +48,7 @@ public class Liste {
 	}
 
 	public void printListe() {
+		//TODO Fehler wenn Liste leer ist
 		System.out.println("START: " + this.getStart().getValue());
 		System.out.println("---");
 

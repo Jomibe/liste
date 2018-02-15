@@ -1,6 +1,9 @@
 package verkettete_listen;
+import java.util.Random;
 
 public class Element {
+	static Random generator = new Random();
+	
 	private int value;
 	private Element prev;
 	private Element next;
@@ -35,16 +38,20 @@ public class Element {
 	public void setNext(Element _next) {
 		this.next = _next;
 	}
+	
+	public static int getRandom() {
+		int random = generator.nextInt(10);
+		return random;
+	}
 
 	public static void main(String[] args) {
 		System.out.println("DEBUG: Lege Liste an.");
 		Liste liste = new Liste();
+		
+		for(int i=0; i<10; i++) {
+			liste.addElement(getRandom());
+		}
 
-		liste.addElement(1);
-		liste.addElement(3);
-		liste.addElement(2);
-
-		System.out.println("DEBUG: Gebe Liste aus.");
 		liste.printListe();
 	}
 
