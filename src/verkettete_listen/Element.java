@@ -40,9 +40,9 @@ public class Element {
 		System.out.println("DEBUG: Lege Liste an.");
 		Liste liste = new Liste();
 
-		liste.addElement(5);
+		liste.addElement(1);
 		liste.addElement(3);
-		liste.addElement(4);
+		liste.addElement(2);
 
 		System.out.println("DEBUG: Gebe Liste aus.");
 		liste.printListe();

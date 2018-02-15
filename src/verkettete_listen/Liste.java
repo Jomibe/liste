@@ -136,7 +136,11 @@ public class Liste {
 		}
 
 		else {
-
+			this.setNeu(new Element(_value), _value);
+			this.getNeu().setPrev(this.getAktuell());
+			this.getNeu().setNext(this.getAktuell().getNext());
+			this.getAktuell().setNext(this.getNeu());
+			this.getAktuell().getNext().setPrev(this.getAktuell());
 		}
 	}
 
