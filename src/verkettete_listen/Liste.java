@@ -128,14 +128,15 @@ public class Liste {
 
 	// TODO addElementBetween
 	public void addElementBetween(int _value) {
-		System.out.println("DEBUG: Lege neues Element " + _value + " nach Element " + getElementByValue(_value -1).getValue() + " an.");
-		this.setAktuell(this.getElementByValue(_value -1));
-		if(this.getAktuell().getNext().getValue() == _value) {
+		System.out.println("DEBUG: Lege neues Element " + _value + " nach Element "
+				+ getElementByValue(_value - 1).getValue() + " an.");
+		this.setAktuell(this.getElementByValue(_value - 1));
+		if (this.getAktuell().getNext().getValue() == _value) {
 			System.out.println("ERROR: Element " + _value + " existiert schon!");
 		}
-		
+
 		else {
-			
+
 		}
 	}
 
@@ -148,7 +149,7 @@ public class Liste {
 		this.setEnde(this.getNeu());
 	}
 
-	//TODO removeDuplicate Methode, welche doppelte Einträge entfernt
+	// TODO removeDuplicate Methode, welche doppelte Einträge entfernt
 	// TODO merge Methode, welche mehrere Listen sortiert
 	// TODO append Methode, welche eine Liste vorne oder hinten anfuegt
 }
