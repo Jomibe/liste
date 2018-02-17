@@ -76,36 +76,52 @@ public class Liste {
 		System.out.println("ENDE: " + this.getEnde().getValue());
 	}
 
+	// TODO getter setter
 	public Element getElementByValue(int _value) {
 		aktuell = this.getStart();
 		while (aktuell.getValue() != _value) {
+			if (aktuell.getNext() != null) {
+				aktuell = aktuell.getNext();
+			} else {
+				this.setAktuell(null);
+				System.out.println("DEBUG: Es gibt kein Element " + _value + ".");
+				break;
+			}
+		}
+		return aktuell;
+	}
+
+	public Element getNextSmallerElement(int _value) {
+		aktuell = this.getStart();
+		while (aktuell.getNext().getValue() < _value) {
 			aktuell = aktuell.getNext();
 		}
-
 		return aktuell;
 	}
 
 	public void addElement(int _value) {
+		// Liste leer?
 		if (this.getStart() == null & this.getEnde() == null) {
 			this.addFirstElement(_value);
 		}
-
-		else {
-
+		// Existiert das Element noch nicht?
+		else if (this.getElementByValue(_value) == null) {
+			// Kleiner als start?
 			if (_value < this.getStart().getValue()) {
 				this.addElementBeforeStart(_value);
 			}
-
-			else if (_value > this.getStart().getValue()) {
-				if (_value > this.getEnde().getValue()) {
-					this.addElementAfterEnde(_value);
-				}
-
-				else {
-					this.addElementBetween(_value);
-				}
+			// Groesser als Ende?
+			else if (_value > this.getEnde().getValue()) {
+				this.addElementAfterEnde(_value);
 			}
+			// Fuege nach dem naechstkleineren ein
+			else {
+				this.addElementBetween(_value);
+			}
+		}
 
+		else {
+			System.out.println("ERROR: Element " + _value + " existiert schon!");
 		}
 	}
 
@@ -128,21 +144,16 @@ public class Liste {
 	}
 
 	public void addElementBetween(int _value) {
-		this.setAktuell(this.getElementByValue(_value));
-		if (this.getAktuell().getValue() == _value) {
-			System.out.println("ERROR: Element " + _value + " existiert schon!");
-		}
-
-		else {
-			System.out.println("DEBUG: Lege neues Element " + _value + " nach Element "
-					+ getElementByValue(_value - 1).getValue() + " an.");
-			this.setAktuell(this.getElementByValue(_value - 1));
-			this.setNeu(new Element(_value), _value);
-			this.getNeu().setPrev(this.getAktuell());
-			this.getNeu().setNext(this.getAktuell().getNext());
-			this.getAktuell().setNext(this.getNeu());
-			this.getAktuell().getNext().setPrev(this.getAktuell());
-		}
+		// Finde naechstkleineres Element
+		this.setAktuell(this.getNextSmallerElement(_value));
+		// Fuege danach ein
+		this.setNeu(new Element(_value), _value);
+		System.out.println("DEBUG: Lege Element " + this.getNeu().getValue() + " nach Element "
+				+ this.getAktuell().getValue() + " an.");
+		this.getNeu().setNext(this.getAktuell().getNext());
+		this.getAktuell().getNext().setPrev(this.getNeu());
+		this.getAktuell().setNext(this.getNeu());
+		this.getNeu().setPrev(this.getAktuell());
 	}
 
 	public void addFirstElement(int _value) {

@@ -50,15 +50,14 @@ public class Element {
 		Liste liste = new Liste();
 
 		/*
-		 * for(int i = 0; i<4; i++) { int ran = getRandom(); System.out.println("ran: "
-		 * + ran); liste.addElement(ran); }
+		 * for (int i = 0; i < 4; i++) { int ran = getRandom();
+		 * System.out.println("ran: " + ran); liste.addElement(ran); }
 		 */
 
 		liste.addElement(6);
-		liste.addElement(9);
-		liste.addElement(9);
-		liste.addElement(10);
-		liste.addElement(10);
+		liste.addElement(8);
+		liste.addElement(8);
+		liste.addElement(8);
 
 		liste.printListe();
 	}
