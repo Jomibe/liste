@@ -48,7 +48,7 @@ public class Liste {
 	}
 
 	public void printListe() {
-		//TODO Fehler wenn Liste leer ist
+		// TODO Fehler wenn Liste leer ist
 		System.out.println("START: " + this.getStart().getValue());
 		System.out.println("---");
 
@@ -127,16 +127,16 @@ public class Liste {
 		this.getNeu().setNext(null);
 	}
 
-	// TODO addElementBetween
 	public void addElementBetween(int _value) {
-		System.out.println("DEBUG: Lege neues Element " + _value + " nach Element "
-				+ getElementByValue(_value - 1).getValue() + " an.");
-		this.setAktuell(this.getElementByValue(_value - 1));
-		if (this.getAktuell().getNext().getValue() == _value) {
+		this.setAktuell(this.getElementByValue(_value));
+		if (this.getAktuell().getValue() == _value) {
 			System.out.println("ERROR: Element " + _value + " existiert schon!");
 		}
 
 		else {
+			System.out.println("DEBUG: Lege neues Element " + _value + " nach Element "
+					+ getElementByValue(_value - 1).getValue() + " an.");
+			this.setAktuell(this.getElementByValue(_value - 1));
 			this.setNeu(new Element(_value), _value);
 			this.getNeu().setPrev(this.getAktuell());
 			this.getNeu().setNext(this.getAktuell().getNext());
