@@ -41,7 +41,7 @@ public class Element {
 	}
 
 	public static int getRandom() {
-		int random = generator.nextInt(10);
+		int random = generator.nextInt(1000000);
 		return random;
 	}
 
@@ -49,15 +49,9 @@ public class Element {
 		System.out.println("DEBUG: Lege Liste an.");
 		Liste liste = new Liste();
 
-		/*
-		 * for (int i = 0; i < 4; i++) { int ran = getRandom();
-		 * System.out.println("ran: " + ran); liste.addElement(ran); }
-		 */
-
-		liste.addElement(6);
-		liste.addElement(8);
-		liste.addElement(8);
-		liste.addElement(8);
+		for (int i = 0; i < 1000000000; i++) {
+			liste.addElement(getRandom());
+		}
 
 		liste.printListe();
 	}
