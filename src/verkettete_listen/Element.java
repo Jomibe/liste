@@ -49,7 +49,7 @@ public class Element {
 		System.out.println("DEBUG: Lege Liste an.");
 		Liste liste = new Liste();
 
-		for (int i = 0; i < 1000000000; i++) {
+		for (int i = 0; i < 10000; i++) {
 			liste.addElement(getRandom());
 		}
 
