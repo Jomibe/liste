@@ -125,7 +125,7 @@ public class Liste {
 		}
 	}
 
-	public void addElementBeforeStart(int _value) {
+	private void addElementBeforeStart(int _value) {
 		System.out.println("DEBUG: Lege neues Element " + _value + " vor Start an.");
 		this.setNeu(new Element(_value), _value);
 		this.getNeu().setNext(this.getStart());
@@ -134,7 +134,7 @@ public class Liste {
 		this.getNeu().setPrev(null);
 	}
 
-	public void addElementAfterEnde(int _value) {
+	private void addElementAfterEnde(int _value) {
 		System.out.println("DEBUG: Lege neues Element " + _value + " nach Ende an.");
 		this.setNeu(new Element(_value), _value);
 		this.getNeu().setPrev(this.getEnde());
@@ -143,7 +143,7 @@ public class Liste {
 		this.getNeu().setNext(null);
 	}
 
-	public void addElementBetween(int _value) {
+	private void addElementBetween(int _value) {
 		// Finde naechstkleineres Element
 		this.setAktuell(this.getNextSmallerElement(_value));
 		// Fuege danach ein
@@ -156,7 +156,7 @@ public class Liste {
 		this.getNeu().setPrev(this.getAktuell());
 	}
 
-	public void addFirstElement(int _value) {
+	private void addFirstElement(int _value) {
 		System.out.println("DEBUG: Lege erstes Element " + _value + " an.");
 		this.setNeu(new Element(_value), _value);
 		this.getNeu().setNext(null);

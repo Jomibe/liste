@@ -4,6 +4,8 @@ import java.util.Random;
 
 public class Element {
 	static Random generator = new Random();
+	public static Liste liste = new Liste();
+	private static int progress = 0;
 
 	private int value;
 	private Element prev;
@@ -44,15 +46,25 @@ public class Element {
 		int random = generator.nextInt(1000000);
 		return random;
 	}
-
+	
 	public static void main(String[] args) {
-		System.out.println("DEBUG: Lege Liste an.");
-		Liste liste = new Liste();
-
-		for (int i = 0; i < 10000; i++) {
+		int steps = 65535;
+		
+		ListeFrame frame = new ListeFrame();
+		frame.setProgress(90);
+		
+		for(int i = 0; i<steps; i++) {
+			liste.addElement(getRandom());
+			progress = i/(steps/10000);
+			System.out.println(progress);
+			frame.setProgress(progress);
+		}
+	}
+	
+	public static void testcase(int _steps) {	
+		for(int i = 0; i<10; i++) {
 			liste.addElement(getRandom());
 		}
-
 		liste.printListe();
 	}
 
