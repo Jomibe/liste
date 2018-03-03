@@ -164,6 +164,61 @@ public class Liste {
 		this.setStart(this.getNeu());
 		this.setEnde(this.getNeu());
 	}
+	
+	public void deleteElement(int _value) {
+		//Liste leer?
+		if(this.getStart() == null & this.getEnde() == null) {
+			System.out.println("ERROR: Kann Element nicht entfernen, Liste ist leer");
+		}
+		
+		//Existiert das Element?
+		else if(this.getElementByValue(_value) != null) {
+			aktuell = this.getElementByValue(_value);
+			
+			//Steht das Element am Start?
+			if(this.getAktuell() == this.getStart()) {
+				this.deleteFirstElement(_value);
+			}
+			
+			// Steht das Element am Ende?
+			if(this.getAktuell() == this.getEnde()) {
+				this.deleteLastElement(_value);
+			}
+		
+			//Entferne Element in der Mitte
+			else {
+				this.deleteElementBetween(_value);
+			}
+		}
+	}
+	
+	private void deleteFirstElement(int _value) {
+		System.out.println("DEBUG: Entferne erstes Element " + _value);
+		this.setAktuell(this.getStart());
+		this.getStart().getNext().setPrev(null);
+		this.setStart(this.getStart().getNext());
+		this.getAktuell().setNext(null);
+		System.out.println("Der Start liegt nun bei " + this.getStart());
+		
+		this.setAktuell(null);
+	}
+	
+	private void deleteLastElement(int _value) {
+		System.out.println("DEBUG: Entferne letztes Element " + _value);
+		this.setAktuell(this.getEnde());
+		this.setEnde(this.getEnde().getPrev());
+		this.getEnde().setNext(null);
+		this.getAktuell().setPrev(null);
+		System.out.println("DEBUG: Das Ende liegt nun bei " + this.getEnde());
+		
+		this.setAktuell(null);		
+	}
+	
+	private void deleteElementBetween(int _value) {
+		System.out.println("DEBUG: Entferne Element " + _value);
+	
+		this.setAktuell(null);
+	}
 
 	// TODO removeDuplicate Methode, welche doppelte Einträge entfernt
 	// TODO merge Methode, welche mehrere Listen sortiert

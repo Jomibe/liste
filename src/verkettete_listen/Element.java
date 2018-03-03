@@ -48,17 +48,18 @@ public class Element {
 	}
 	
 	public static void main(String[] args) {
-		int steps = 65535;
+		
+		
+		/*int steps = 65535;
 		
 		ListeFrame frame = new ListeFrame();
-		frame.setProgress(90);
 		
 		for(int i = 0; i<steps; i++) {
 			liste.addElement(getRandom());
 			progress = i/(steps/10000);
 			System.out.println(progress);
 			frame.setProgress(progress);
-		}
+		}*/
 	}
 	
 	public static void testcase(int _steps) {	
