@@ -49,31 +49,38 @@ public class Liste {
 
 	public void printListe() {
 		// TODO Fehler wenn Liste leer ist
-		System.out.println("START: " + this.getStart().getValue());
-		System.out.println("---");
-
-		aktuell = this.getStart();
-		while (aktuell != null) {
-			if (aktuell.getPrev() != null) {
-				System.out.println("Prev: " + aktuell.getPrev().getValue());
-			}
-
-			else {
-				System.out.println("Prev: null");
-			}
-			System.out.println(aktuell.getValue());
-			if (aktuell.getNext() != null) {
-				System.out.println("Next: " + aktuell.getNext().getValue());
-			}
-
-			else {
-				System.out.println("Next: null");
-			}
-			System.out.println("---");
-			aktuell = aktuell.getNext();
+		if(this.getStart() == null & this.getEnde() == null) {
+			System.out.println("ERROR: Kann Liste nicht ausgeben, da keine Elemente vorhanden sind.");
 		}
-
-		System.out.println("ENDE: " + this.getEnde().getValue());
+		
+		else {
+		
+			System.out.println("START: " + this.getStart().getValue());
+			System.out.println("---");
+	
+			aktuell = this.getStart();
+			while (aktuell != null) {
+				if (aktuell.getPrev() != null) {
+					System.out.println("Prev: " + aktuell.getPrev().getValue());
+				}
+	
+				else {
+					System.out.println("Prev: null");
+				}
+				System.out.println(aktuell.getValue());
+				if (aktuell.getNext() != null) {
+					System.out.println("Next: " + aktuell.getNext().getValue());
+				}
+	
+				else {
+					System.out.println("Next: null");
+				}
+				System.out.println("---");
+				aktuell = aktuell.getNext();
+			}
+	
+			System.out.println("ENDE: " + this.getEnde().getValue());
+		}
 	}
 
 	// TODO getter setter
@@ -168,7 +175,7 @@ public class Liste {
 	public void deleteElement(int _value) {
 		//Liste leer?
 		if(this.getStart() == null & this.getEnde() == null) {
-			System.out.println("ERROR: Kann Element nicht entfernen, Liste ist leer");
+			System.out.println("ERROR: Kann Element " + _value + " nicht entfernen, Liste ist leer");
 		}
 		
 		//Liste hat nur noch ein Element?
@@ -186,7 +193,7 @@ public class Liste {
 			}
 			
 			// Steht das Element am Ende?
-			if(this.getAktuell() == this.getEnde()) {
+			else if(this.getAktuell() == this.getEnde()) {
 				this.deleteEndeElement(_value);
 			}
 		
@@ -203,7 +210,7 @@ public class Liste {
 		this.getStart().getNext().setPrev(null);
 		this.setStart(this.getStart().getNext());
 		this.getAktuell().setNext(null);
-		System.out.println("Der Start liegt nun bei " + this.getStart() + ".");
+		System.out.println("Der Start liegt nun bei " + this.getStart().getValue() + ".");
 		
 		this.setAktuell(null);
 	}

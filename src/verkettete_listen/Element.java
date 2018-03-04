@@ -51,11 +51,11 @@ public class Element {
 		Liste liste = new Liste();
 		
 		liste.addElement(5);
-		//liste.addElement(6);
+		liste.addElement(6);
 		//liste.addElement(7);
 		liste.deleteElement(5);
 		
-		//liste.printListe();
+		liste.printListe();
 		
 		/*int steps = 65535;
 		
