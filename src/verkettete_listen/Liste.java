@@ -48,22 +48,21 @@ public class Liste {
 	}
 
 	public void printListe() {
-		// TODO Fehler wenn Liste leer ist
-		if(this.getStart() == null & this.getEnde() == null) {
+		if (this.getStart() == null & this.getEnde() == null) {
 			System.out.println("ERROR: Kann Liste nicht ausgeben, da keine Elemente vorhanden sind.");
 		}
-		
+
 		else {
-		
+
 			System.out.println("START: " + this.getStart().getValue());
 			System.out.println("---");
-	
+
 			aktuell = this.getStart();
 			while (aktuell != null) {
 				if (aktuell.getPrev() != null) {
 					System.out.println("Prev: " + aktuell.getPrev().getValue());
 				}
-	
+
 				else {
 					System.out.println("Prev: null");
 				}
@@ -71,14 +70,14 @@ public class Liste {
 				if (aktuell.getNext() != null) {
 					System.out.println("Next: " + aktuell.getNext().getValue());
 				}
-	
+
 				else {
 					System.out.println("Next: null");
 				}
 				System.out.println("---");
 				aktuell = aktuell.getNext();
 			}
-	
+
 			System.out.println("ENDE: " + this.getEnde().getValue());
 		}
 	}
@@ -171,39 +170,39 @@ public class Liste {
 		this.setStart(this.getNeu());
 		this.setEnde(this.getNeu());
 	}
-	
+
 	public void deleteElement(int _value) {
-		//Liste leer?
-		if(this.getStart() == null & this.getEnde() == null) {
+		// Liste leer?
+		if (this.getStart() == null & this.getEnde() == null) {
 			System.out.println("ERROR: Kann Element " + _value + " nicht entfernen, Liste ist leer");
 		}
-		
-		//Liste hat nur noch ein Element?
-		else if(this.getStart() == this.getEnde()) {
+
+		// Liste hat nur noch ein Element?
+		else if (this.getStart() == this.getEnde()) {
 			this.deleteLastElement();
 		}
-		
-		//Existiert das Element?
-		else if(this.getElementByValue(_value) != null) {
+
+		// Existiert das Element?
+		else if (this.getElementByValue(_value) != null) {
 			aktuell = this.getElementByValue(_value);
-			
-			//Steht das Element am Start?
-			if(this.getAktuell() == this.getStart()) {
+
+			// Steht das Element am Start?
+			if (this.getAktuell() == this.getStart()) {
 				this.deleteStartElement(_value);
 			}
-			
+
 			// Steht das Element am Ende?
-			else if(this.getAktuell() == this.getEnde()) {
+			else if (this.getAktuell() == this.getEnde()) {
 				this.deleteEndeElement(_value);
 			}
-		
-			//Entferne Element in der Mitte
+
+			// Entferne Element in der Mitte
 			else {
 				this.deleteElementBetween(_value);
 			}
 		}
 	}
-	
+
 	private void deleteStartElement(int _value) {
 		System.out.println("DEBUG: Entferne erstes Element " + _value + ".");
 		this.setAktuell(this.getStart());
@@ -211,16 +210,16 @@ public class Liste {
 		this.setStart(this.getStart().getNext());
 		this.getAktuell().setNext(null);
 		System.out.println("Der Start liegt nun bei " + this.getStart().getValue() + ".");
-		
+
 		this.setAktuell(null);
 	}
-	
+
 	private void deleteLastElement() {
 		System.out.println("DEBUG: Entferne letztes vorhandenes Element " + this.getStart().getValue() + ".");
 		this.setStart(null);
 		this.setEnde(null);
 	}
-	
+
 	private void deleteEndeElement(int _value) {
 		System.out.println("DEBUG: Entferne letztes Element " + _value);
 		this.setAktuell(this.getEnde());
@@ -228,10 +227,10 @@ public class Liste {
 		this.getEnde().setNext(null);
 		this.getAktuell().setPrev(null);
 		System.out.println("DEBUG: Das Ende liegt nun bei " + this.getEnde());
-		
-		this.setAktuell(null);		
+
+		this.setAktuell(null);
 	}
-	
+
 	private void deleteElementBetween(int _value) {
 		System.out.println("DEBUG: Entferne Element " + _value);
 		this.setAktuell(this.getElementByValue(_value));

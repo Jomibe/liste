@@ -52,12 +52,12 @@ public class ListeFrame extends JFrame {
 	public void jButton1_ActionPerformed(ActionEvent evt) {
 		this.setProgress(20);
 	}
-	
+
 	public void setProgress(int _progress) {
-		if(_progress > 0 && _progress < 100000) {
+		if (_progress > 0 && _progress < 100000) {
 			jProgressBar1.setValue(_progress);
 		}
-		
+
 		else {
 			System.out.println("ERROR: " + _progress + " ist nicht im Bereich 0 - 100!");
 		}
