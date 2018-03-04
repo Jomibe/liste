@@ -171,18 +171,23 @@ public class Liste {
 			System.out.println("ERROR: Kann Element nicht entfernen, Liste ist leer");
 		}
 		
+		//Liste hat nur noch ein Element?
+		else if(this.getStart() == this.getEnde()) {
+			this.deleteLastElement();
+		}
+		
 		//Existiert das Element?
 		else if(this.getElementByValue(_value) != null) {
 			aktuell = this.getElementByValue(_value);
 			
 			//Steht das Element am Start?
 			if(this.getAktuell() == this.getStart()) {
-				this.deleteFirstElement(_value);
+				this.deleteStartElement(_value);
 			}
 			
 			// Steht das Element am Ende?
 			if(this.getAktuell() == this.getEnde()) {
-				this.deleteLastElement(_value);
+				this.deleteEndeElement(_value);
 			}
 		
 			//Entferne Element in der Mitte
@@ -192,18 +197,24 @@ public class Liste {
 		}
 	}
 	
-	private void deleteFirstElement(int _value) {
-		System.out.println("DEBUG: Entferne erstes Element " + _value);
+	private void deleteStartElement(int _value) {
+		System.out.println("DEBUG: Entferne erstes Element " + _value + ".");
 		this.setAktuell(this.getStart());
 		this.getStart().getNext().setPrev(null);
 		this.setStart(this.getStart().getNext());
 		this.getAktuell().setNext(null);
-		System.out.println("Der Start liegt nun bei " + this.getStart());
+		System.out.println("Der Start liegt nun bei " + this.getStart() + ".");
 		
 		this.setAktuell(null);
 	}
 	
-	private void deleteLastElement(int _value) {
+	private void deleteLastElement() {
+		System.out.println("DEBUG: Entferne letztes vorhandenes Element " + this.getStart().getValue() + ".");
+		this.setStart(null);
+		this.setEnde(null);
+	}
+	
+	private void deleteEndeElement(int _value) {
 		System.out.println("DEBUG: Entferne letztes Element " + _value);
 		this.setAktuell(this.getEnde());
 		this.setEnde(this.getEnde().getPrev());
@@ -216,7 +227,11 @@ public class Liste {
 	
 	private void deleteElementBetween(int _value) {
 		System.out.println("DEBUG: Entferne Element " + _value);
-	
+		this.setAktuell(this.getElementByValue(_value));
+		this.getAktuell().getPrev().setNext(this.getAktuell().getNext());
+		this.getAktuell().getNext().setPrev(this.getAktuell().getPrev());
+		this.getAktuell().setNext(null);
+		this.getAktuell().setPrev(null);
 		this.setAktuell(null);
 	}
 
