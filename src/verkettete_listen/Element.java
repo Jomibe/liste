@@ -43,17 +43,14 @@ public class Element {
 	}
 
 	public static int getRandom() {
-		int random = generator.nextInt(1000000);
+		int random = generator.nextInt(10);
 		return random;
 	}
 
 	public static void main(String[] args) {
 		Liste liste = new Liste();
 
-		liste.addElement(5);
-		liste.addElement(6);
-		// liste.addElement(7);
-		liste.deleteElement(5);
+		testcase();
 
 		liste.printListe();
 
@@ -67,11 +64,16 @@ public class Element {
 		 */
 	}
 
-	public static void testcase(int _steps) {
-		for (int i = 0; i < 10; i++) {
-			liste.addElement(getRandom());
+	public static void testcase() {
+		for(int j = 0; j < 2; j++) {
+			for (int i = 0; i < 3; i++) {
+				liste.addElement(getRandom());
+			}
+			
+			for(int k = 0; k < 1; k++) {
+				liste.deleteElement(getRandom());
+			}
 		}
-		liste.printListe();
 	}
 
 }
